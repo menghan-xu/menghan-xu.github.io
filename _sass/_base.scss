@@ -686,6 +686,59 @@ footer.sticky-bottom {
     }
   }
 
+  a.post-title {
+    color: var(--global-text-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
+  }
+
+  .project-meta {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .project-tag {
+    display: inline-block;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    &:hover {
+      background-color: #bbdefb;
+    }
+
+    i {
+      margin-right: 0.25rem;
+    }
+  }
+
+  .project-category {
+    display: inline-block;
+    background-color: #fff3e0;
+    color: #f57c00;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    &:hover {
+      background-color: #ffe0b2;
+    }
+
+    i {
+      margin-right: 0.25rem;
+    }
+  }
+
   .card {
     img {
       width: 100%;

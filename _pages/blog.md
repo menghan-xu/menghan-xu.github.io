@@ -1,9 +1,9 @@
 ---
 layout: default
 permalink: /blog/
-title: blog
+title: blogs
 nav: true
-nav_order: 1
+nav_order: 2
 pagination:
   enabled: true
   collection: posts
@@ -18,19 +18,19 @@ pagination:
 
 <div class="post">
 
+{% comment %}
 {% assign blog_name_size = site.blog_name | size %}
 {% assign blog_description_size = site.blog_description | size %}
 
 {% if blog_name_size > 0 or blog_description_size > 0 %}
-
   <div class="header-bar">
     <h1>{{ site.blog_name }}</h1>
     <h2>{{ site.blog_description }}</h2>
   </div>
-  {% endif %}
+{% endif %}
+{% endcomment %}
 
 {% if site.display_tags and site.display_tags.size > 0 or site.display_categories and site.display_categories.size > 0 %}
-
   <div class="tag-category-list">
     <ul class="p-0 m-0">
       {% for tag in site.display_tags %}
@@ -54,7 +54,7 @@ pagination:
       {% endfor %}
     </ul>
   </div>
-  {% endif %}
+{% endif %}
 
 {% assign featured_posts = site.posts | where: "featured", "true" %}
 {% if featured_posts.size > 0 %}
@@ -65,7 +65,13 @@ pagination:
 <div class="row row-cols-{% if featured_posts.size <= 2 or is_even == 0 %}2{% else %}3{% endif %}">
 {% for post in featured_posts %}
 <div class="col mb-4">
-<a href="{{ post.url | relative_url }}">
+  {% if post.redirect == blank %}
+    <a href="{{ post.url | relative_url }}">
+  {% elsif post.redirect contains '://' %}
+    <a href="{{ post.redirect }}" target="_blank">
+  {% else %}
+    <a href="{{ post.redirect | relative_url }}" target="_blank">
+  {% endif %}
 <div class="card hoverable">
 <div class="row g-0">
 <div class="col-md-12">
@@ -76,29 +82,30 @@ pagination:
 <h3 class="card-title text-lowercase">{{ post.title }}</h3>
 <p class="card-text">{{ post.description }}</p>
 
-                    {% if post.external_source == blank %}
-                      {% assign read_time = post.content | number_of_words | divided_by: 180 | plus: 1 %}
-                    {% else %}
-                      {% assign read_time = post.feed_content | strip_html | number_of_words | divided_by: 180 | plus: 1 %}
-                    {% endif %}
-                    {% assign year = post.date | date: "%Y" %}
+{% if post.read_time %}
+  {% assign read_time = post.read_time %}
+{% elsif post.external_source == blank %}
+  {% assign read_time = post.content | number_of_words | divided_by: 180 | plus: 1 %}
+{% else %}
+  {% assign read_time = post.feed_content | strip_html | number_of_words | divided_by: 180 | plus: 1 %}
+{% endif %}
+{% assign year = post.date | date: "%Y" %}
 
-                    <p class="post-meta">
-                      {{ read_time }} min read &nbsp; &middot; &nbsp;
-                      <a href="{{ year | prepend: '/blog/' | relative_url }}">
-                        <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
-      </div>
-    </div>
-    <hr>
-
+<p class="post-meta">
+  {{ read_time }} min read &nbsp; &middot; &nbsp;
+  <a href="{{ year | prepend: '/blog/' | relative_url }}">
+    <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+{% endfor %}
+</div>
+</div>
+<hr>
 {% endif %}
 
   <ul class="post-list">
@@ -111,11 +118,14 @@ pagination:
 
     {% for post in postlist %}
 
-    {% if post.external_source == blank %}
+    {% if post.read_time %}
+      {% assign read_time = post.read_time %}
+    {% elsif post.external_source == blank %}
       {% assign read_time = post.content | number_of_words | divided_by: 180 | plus: 1 %}
     {% else %}
       {% assign read_time = post.feed_content | strip_html | number_of_words | divided_by: 180 | plus: 1 %}
     {% endif %}
+    
     {% assign year = post.date | date: "%Y" %}
     {% assign tags = post.tags | join: "" %}
     {% assign categories = post.categories | join: "" %}
@@ -123,22 +133,24 @@ pagination:
     <li>
 
 {% if post.thumbnail %}
-
 <div class="row">
-          <div class="col-sm-9">
+    <div class="col-sm-9">
 {% endif %}
         <h3>
         {% if post.redirect == blank %}
           <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        
         {% elsif post.redirect contains '://' %}
           <a class="post-title" href="{{ post.redirect }}" target="_blank">{{ post.title }}</a>
           <svg width="2rem" height="2rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
             <path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
+        
         {% else %}
-          <a class="post-title" href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
+          <a class="post-title" href="{{ post.redirect | relative_url }}" target="_blank">{{ post.title }}</a>
         {% endif %}
       </h3>
+      
       <p>{{ post.description }}</p>
       <p class="post-meta">
         {{ read_time }} min read &nbsp; &middot; &nbsp;
@@ -175,9 +187,7 @@ pagination:
     </p>
 
 {% if post.thumbnail %}
-
-</div>
-
+    </div>
   <div class="col-sm-3">
     <img class="card-img" src="{{ post.thumbnail | relative_url }}" style="object-fit: cover; height: 90%" alt="image">
   </div>
