@@ -6,7 +6,7 @@ subtitle: <a href="mailto:mx253@cornell.edu">mx253@cornell.edu</a>
 
 profile:
   align: right
-  image: my_pic.jpg
+  image: my_pic_new.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Allegedly very smart. Evidence available upon request😆</p>
