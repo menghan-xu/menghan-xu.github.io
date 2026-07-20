@@ -261,8 +261,8 @@ display_categories: ["theoretical-CS", "machine-learning"] # these categories wi
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Xu]
+  first_name: [Menghan, M.]
 
   style: apa
   locale: en
