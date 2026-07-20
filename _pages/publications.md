@@ -2,18 +2,18 @@
 layout: page
 permalink: /publications/
 title: publications
-description: 
+description:
 nav: true
 nav_order: 3
+_styles: >
+  .post-header .post-title { display: none; }
+  .post h1.post-title { margin-bottom: 1.5rem; }
 ---
-
-Work in progress. Something interesting is in the works.
 
 <!-- _pages/publications.md -->
 
-<!-- Bibsearch Feature -->
+<h1 class="post-title">publications / preprints</h1>
 
-{% comment %}
 {% include bib_search.liquid %}
 
 <div class="publications">
@@ -21,4 +21,3 @@ Work in progress. Something interesting is in the works.
 {% bibliography %}
 
 </div>
-{% endcomment %}

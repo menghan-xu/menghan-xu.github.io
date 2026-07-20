@@ -47,18 +47,47 @@ layout: default
       {% include news.liquid limit=true %}
     {% endif %}
 
+    {% if page.selected_papers %}
+      <h2>
+        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">publications / preprints</a>
+      </h2>
+      {% include selected_papers.liquid %}
+    {% endif %}
+
     {% if page.latest_posts and page.latest_posts.enabled %}
       <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest blogs</a>
+        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">blogs</a>
       </h2>
       {% include latest_posts.liquid %}
     {% endif %}
 
-    {% if page.selected_papers %}
+    {% if page.selected_projects %}
       <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">publications</a>
+        <a href="{{ '/projects/' | relative_url }}" style="color: inherit">projects</a>
       </h2>
-      <p style="font-weight: bold;">Work in progress. Interesting things coming.</p>
+      <div style="height: 1rem;"></div>
+      {% assign sorted_projects = site.projects | sort: "importance" %}
+      {% for project in sorted_projects %}
+        <div class="row" style="margin-bottom: 1rem;">
+          <div class="col-sm-3">
+            {% if project.img %}
+              <img src="{{ project.img | relative_url }}" alt="{{ project.title }}" class="img-fluid rounded z-depth-1" style="width: 100%;" data-zoomable>
+            {% endif %}
+          </div>
+          <div class="col-sm-9">
+            {% if project.redirect %}
+              <a href="{{ project.redirect }}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                <strong>{{ project.title }}</strong>
+              </a>
+            {% else %}
+              <a href="{{ project.url | relative_url }}" style="color: inherit; text-decoration: none;">
+                <strong>{{ project.title }}</strong>
+              </a>
+            {% endif %}
+            <div style="font-size: 0.9rem; margin-top: 0.2rem;">{{ project.description }}</div>
+          </div>
+        </div>
+      {% endfor %}
     {% endif %}
 
     {% if page.social %}
