@@ -27,6 +27,6 @@ latest_posts:
 
 I’m a master’s student at [Cornell University](https://bowers.cornell.edu/), where I do research in machine learning. I’m particularly interested in large language models, world models, and reinforcement learning. I received my B.S. in Statistics from the [University of Science and Technology of China](https://en.ustc.edu.cn/).
 
-Beyond research, I genuinely enjoy thinking and solving algorithmic problems, or more broadly, tackling complex problems that require deep reasoning. Recently, I’ve been especially interested in topics like LP duality, the hedge algorithm, and game theory.
+Beyond research, I enjoy thinking about and solving algorithmic problems, or more broadly, tackling complex problems that require deep reasoning. Recently, I’ve been especially interested in topics like LP duality, the hedge algorithm, and game theory.
 
-Outside of academics, I enjoy astronomy and astrophysics. I also like listening to music, especially indie music, singing, playing the guitar, watching films, and pretty much any kind of strategic game.
+Outside of academics, I enjoy astronomy and astrophysics. I also like listening to music, especially indie music, singing, playing the guitar, watching movies, and pretty much any kind of strategy game.
