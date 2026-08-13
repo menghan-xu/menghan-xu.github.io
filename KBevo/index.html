@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="KBevo: Co-Evolving Structured Knowledge and Reasoning in Language Models.">
+  <meta name="keywords" content="KBevo, knowledge base, reasoning, language models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KBevo: Co-Evolving Structured Knowledge and Reasoning in Language Models</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Co-Evolving Structured Knowledge and Reasoning in Language Models</h1>
+          <div class="is-size-5 publication-authors">
+            <!-- TODO: add personal homepage URLs where available. -->
+            <span class="author-block">
+              <a href="#">Ryan Thomas Noonan</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://linxi-zhao.github.io/">Linxi Zhao</a><sup>*,&dagger;</sup>,</span>
+            <span class="author-block">
+              <a href="https://menghan-xu.github.io">Menghan Xu</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://akanksha-sarkar.github.io/">Akanksha Sarkar</a>,</span>
+            <span class="author-block">
+              <a href="#">Mihir Mishra</a>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/dongyoung-go">Dongyoung Go</a>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.cornell.edu/~kilian/">Kilian Q. Weinberger</a>,</span>
+            <span class="author-block">
+              <a href="https://yoavartzi.com/">Yoav Artzi</a>,</span>
+            <span class="author-block">
+              <a href="https://jenjsun.com/">Jennifer J. Sun</a></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Department of Computer Science, Cornell University</span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution,</span>
+            <span class="author-block"><sup>&dagger;</sup>Project lead</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">COLM 2026</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. TODO: replace # with the paper URL. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arXiv Link. TODO: replace # with the arXiv abs URL. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. TODO: replace # with the GitHub repo URL. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <!-- Dataset Link. TODO: replace # or delete this block. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- Teaser figure. Swap for a <video> if you have one:
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4" type="video/mp4">
+      </video>
+      -->
+      <img src="./static/images/fig_multihop_overview.png"
+           alt="Overview of KBevo: co-evolving structured knowledge and reasoning."
+           style="width: 100%;">
+      <h2 class="subtitle has-text-centered">
+        <!-- TODO: one-line takeaway of the paper. -->
+        <span class="dnerf">KBevo</span> co-evolves a structured knowledge base and the
+        reasoning that uses it.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <!-- TODO: paste the paper abstract here. -->
+            Abstract goes here.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. TODO: replace VIDEO_ID or delete this block.
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Method. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            <!-- TODO: describe the method; add figures under ./static/images/. -->
+            Method description goes here.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            <!-- TODO: results, tables, plots. -->
+            Results go here.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+
+    <!-- Results carousel. Drop videos in ./static/videos/ and uncomment.
+    <div id="results-carousel" class="carousel results-carousel">
+      <div class="item">
+        <video autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/example.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{noonan2026coevolving,
+  title     = {Co-Evolving Structured Knowledge and Reasoning in Language Models},
+  author    = {Noonan, Ryan Thomas and Zhao, Linxi and Xu, Menghan and Sarkar, Akanksha and Mishra, Mihir and Go, Dongyoung and Weinberger, Kilian Q. and Artzi, Yoav and Sun, Jennifer J.},
+  booktitle = {Conference on Language Modeling (COLM)},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://menghan-xu.github.io">
+        <i class="fas fa-home"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This website borrows the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of the
+            <a href="https://nerfies.github.io">Nerfies</a> project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
