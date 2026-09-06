@@ -29,3 +29,5 @@ I’m a master’s student at [Cornell University](https://bowers.cornell.edu/),
 Beyond research, I enjoy thinking about and solving algorithmic problems, or more broadly, tackling complex problems that require deep reasoning. Recently, I’ve been especially interested in topics like LP duality, the hedge algorithm, and game theory.
 
 Outside of academics, I enjoy astronomy and astrophysics. I also like listening to music, especially indie music, singing, playing the guitar, watching movies, and pretty much any kind of strategy game.
+
+I’m currently working with Prof. [Kevin Ellis](https://www.cs.cornell.edu/~ellisk/) on a super cool project exploring temporal abstraction in world models. Feel free to reach out!
