@@ -8,6 +8,8 @@ profile:
   align: right
   image: my_pic_new.jpg
   image_circular: false # crops the image to make it circular
+  more_info: >
+    <p>Feel free to reach out!</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 selected_projects: true
@@ -30,4 +32,4 @@ Beyond research, I enjoy thinking about and solving algorithmic problems, or mor
 
 Outside of academics, I enjoy astronomy and astrophysics. I also like listening to music, especially indie music, singing, playing the guitar, watching movies, and pretty much any kind of strategy game.
 
-I’m currently working with Prof. [Kevin Ellis](https://www.cs.cornell.edu/~ellisk/) on a super cool project exploring temporal abstraction in world models. Feel free to reach out!
+I’m currently working with [Prof. Kevin Ellis](https://www.cs.cornell.edu/~ellisk/) on a super cool project exploring temporal abstraction in world models.
