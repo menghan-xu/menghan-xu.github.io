@@ -1,177 +1,271 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="KBevo: Co-Evolving Structured Knowledge and Reasoning in Language Models.">
-  <meta name="keywords" content="KBevo, knowledge base, reasoning, language models">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KBevo: Co-Evolving Structured Knowledge and Reasoning in Language Models</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="KBevo: Co-Evolving Structured Knowledge and Reasoning in Language Models." />
+    <meta name="keywords" content="KBevo, knowledge base, reasoning, language models" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KBevo: Co-Evolving Structured Knowledge and Reasoning in Language Models</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="icon" href="./static/images/favicon.svg" />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-</head>
-<body>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+        options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"] },
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-    </div>
-  </div>
-</nav>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <style>
+      /* Bold all section headings (Bulma defaults .title to 600). */
+      .title,
+      .content h1,
+      .content h2,
+      .content h3,
+      .content h4,
+      .content h5,
+      .content h6 {
+        font-weight: 700;
+      }
 
+      /* Booktabs-style results table (mirrors the LaTeX \toprule/\midrule/\bottomrule look). */
+      .booktabs-wrap {
+        overflow-x: auto;
+      }
+      .content table.booktabs {
+        width: 80%;
+        margin: 1.5rem auto 0.75rem auto;
+        border-collapse: collapse;
+        background-color: transparent;
+        font-size: 0.85rem;
+        border-top: 2px solid #363636;
+        border-bottom: 2px solid #363636;
+      }
+      .content table.booktabs th,
+      .content table.booktabs td {
+        border: 0;
+        padding: 0.3em 0.9em;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+      }
+      .content table.booktabs th:first-child,
+      .content table.booktabs td:first-child {
+        text-align: left;
+      }
+      .content table.booktabs thead th {
+        font-weight: 600;
+        border-bottom: 1px solid #363636;
+      }
+      .content table.booktabs tr.group td {
+        border-top: 1px solid #363636;
+      }
+      .content table.booktabs tr.block-head td {
+        font-weight: 700;
+        padding-top: 0.55em;
+      }
+      .content table.booktabs tr.row-light td {
+        background-color: #efefef;
+      }
+      .content table.booktabs tr.row-mid td {
+        background-color: #dcdcdc;
+      }
+      .content table.booktabs .rule-left {
+        border-left: 1px solid #363636;
+      }
+      .booktabs-caption {
+        width: 80%;
+        margin: 0 auto 1.5rem auto;
+        font-size: 0.8rem;
+        color: #4a4a4a;
+      }
+      @media screen and (max-width: 768px) {
+        .content table.booktabs,
+        .booktabs-caption {
+          width: 100%;
+          font-size: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center"></div>
+      </div>
+    </nav>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Co-Evolving Structured Knowledge and Reasoning in Language Models</h1>
-          <div class="is-size-5 publication-authors">
-            <!-- TODO: add personal homepage URLs where available. -->
-            <span class="author-block">
-              <a href="#">Ryan Thomas Noonan</a><sup>*</sup>,</span>
-            <span class="author-block">
-              <a href="https://linxi-zhao.github.io/">Linxi Zhao</a><sup>*,&dagger;</sup>,</span>
-            <span class="author-block">
-              <a href="https://menghan-xu.github.io">Menghan Xu</a><sup>*</sup>,</span>
-            <span class="author-block">
-              <a href="https://akanksha-sarkar.github.io/">Akanksha Sarkar</a>,</span>
-            <span class="author-block">
-              <a href="#">Mihir Mishra</a>,</span>
-            <span class="author-block">
-              <a href="https://sites.google.com/view/dongyoung-go">Dongyoung Go</a>,</span>
-            <span class="author-block">
-              <a href="https://www.cs.cornell.edu/~kilian/">Kilian Q. Weinberger</a>,</span>
-            <span class="author-block">
-              <a href="https://yoavartzi.com/">Yoav Artzi</a>,</span>
-            <span class="author-block">
-              <a href="https://jenjsun.com/">Jennifer J. Sun</a></span>
-          </div>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Co-Evolving Structured Knowledge and Reasoning in Language Models</h1>
+              <div class="is-size-5 publication-authors">
+                <!-- TODO: add personal homepage URLs where available. -->
+                <span class="author-block"> <a href="#">Ryan Thomas Noonan</a><sup>*</sup>,</span>
+                <span class="author-block"> <a href="https://linxi-zhao.github.io/">Linxi Zhao</a><sup>*,&dagger;</sup>,</span>
+                <span class="author-block"> <a href="https://menghan-xu.github.io">Menghan Xu</a><sup>*</sup>,</span>
+                <span class="author-block"> <a href="https://akanksha-sarkar.github.io/">Akanksha Sarkar</a>,</span>
+                <span class="author-block"> <a href="#">Mihir Mishra</a>,</span>
+                <span class="author-block"> <a href="https://sites.google.com/view/dongyoung-go">Dongyoung Go</a>,</span>
+                <span class="author-block"> <a href="https://www.cs.cornell.edu/~kilian/">Kilian Q. Weinberger</a>,</span>
+                <span class="author-block"> <a href="https://yoavartzi.com/">Yoav Artzi</a>,</span>
+                <span class="author-block"> <a href="https://jenjsun.com/">Jennifer J. Sun</a></span>
+              </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Department of Computer Science, Cornell University</span>
-          </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Department of Computer Science, Cornell University</span>
+              </div>
 
-          <div class="is-size-6 publication-authors">
-            <span class="author-block"><sup>*</sup>Equal contribution,</span>
-            <span class="author-block"><sup>&dagger;</sup>Project lead</span>
-          </div>
+              <div class="is-size-6 publication-authors">
+                <span class="author-block"><sup>*</sup>Equal contribution,</span>
+                <span class="author-block"><sup>&dagger;</sup>Project lead</span>
+              </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">COLM 2026</span>
-          </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">COLM 2026</span>
+              </div>
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. TODO: replace # with the paper URL. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- arXiv Link. -->
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2608.26386" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
                   </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <!-- arXiv Link. TODO: replace # with the arXiv abs URL. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
+                  <!-- Code Link. -->
+                  <span class="link-block">
+                    <a href="https://github.com/kilian-group/KBevo" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
                   </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Code Link. TODO: replace # with the GitHub repo URL. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                </a>
-              </span>
-              <!-- Dataset Link. TODO: replace # or delete this block. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                </a>
-              </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- Teaser figure. Swap for a <video> if you have one:
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4" type="video/mp4">
-      </video>
-      -->
-      <img src="./static/images/fig_multihop_overview.png"
-           alt="Overview of KBevo: co-evolving structured knowledge and reasoning."
-           style="width: 100%;">
-      <h2 class="subtitle has-text-centered">
-        <!-- TODO: one-line takeaway of the paper. -->
-        <span class="dnerf">KBevo</span> co-evolves a structured knowledge base and the
-        reasoning that uses it.
-      </h2>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            <!-- TODO: paste the paper abstract here. -->
-            Abstract goes here.
-          </p>
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <h2 class="subtitle has-text-centered">
+            <span class="dnerf">KBevo</span> co-evolves a structured knowledge base and the reasoning that uses it.
+          </h2>
         </div>
       </div>
-    </div>
-    <!--/ Abstract. -->
+    </section>
 
-    <!-- Paper video. TODO: replace VIDEO_ID or delete this block.
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Overview. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3">Can a language model learn what knowledge to store while still letting us control what it knows?</h2>
+            <div class="content has-text-justified">
+              <p>
+                Language models store a vast amount of knowledge in their parameters, but that knowledge is difficult to inspect, update, or remove.
+                <a href="https://arxiv.org/abs/2005.11401">Retrieval-augmented models</a> make external information accessible, yet retrieving
+                unstructured text often brings in irrelevant context and gives users only coarse control over what the model sees. Structured
+                knowledge bases offer a more precise interface: facts are explicit, queryable, and editable.
+              </p>
+              <p>But who should build the knowledge base, and how do we know whether it contains the right facts for reasoning?</p>
+              <p>
+                We introduce <strong>KBevo</strong>, a framework in which knowledge construction and reasoning <strong>co-evolve</strong>. Instead of
+                treating the knowledge base as a fixed resource, KBevo uses downstream question-answering outcomes to learn both
+                <strong>what knowledge to store</strong> and <strong>how to reason over it</strong>.
+              </p>
+            </div>
+
+            <img src="./static/images/fig_kbevo.png" alt="KBevo learns what knowledge to store and how to reason over it." style="width: 100%" />
+            <p class="has-text-centered is-size-7" style="margin-top: 0.75rem">
+              <em
+                >Figure 1. Standard retrieval-based RL improves the reasoning policy while operating over a fixed knowledge store. KBevo jointly
+                optimizes reasoning and structured knowledge base construction, allowing the model and its knowledge base to improve together.</em
+              >
+            </p>
+
+            <h3 class="title is-4" style="margin-top: 2rem">Contributions</h3>
+            <div class="content has-text-justified">
+              <ul>
+                <li>
+                  <strong>A co-evolving training framework.</strong> KBevo jointly optimizes KB construction and reasoning using outcome rewards,
+                  offering a scalable path to KB construction beyond the constraints of human or LLM annotation.
+                </li>
+                <li>
+                  <strong>Competitive reasoning with controllable knowledge.</strong> KBevo achieves competitive performance on knowledge-intensive QA
+                  benchmarks while enabling direct, training-free knowledge editing.
+                </li>
+                <li>
+                  <strong>More complete and effective knowledge bases.</strong> Our analysis shows that co-evolution produces more complete and
+                  effective KBs and improves grounded reasoning.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--/ Overview. -->
+
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Retrieval-augmented methods improve factual accuracy by grounding language models in external knowledge, but retrieving over
+                unstructured text often introduces irrelevant context and offers limited control over the retrieved information. Structured knowledge
+                bases offer a more controllable alternative, yet they are expensive to construct and often brittle to reason over. To address these
+                limitations, we propose KBevo: a co-evolving framework that jointly learns to construct a structured knowledge base and reason over it
+                for knowledge-intensive question answering. By optimizing both components end-to-end with QA outcome rewards, our method enables
+                reasoning success to directly improve the quality of the constructed knowledge base. This leads to larger, better-connected knowledge
+                structures with higher answer reachability, while also improving compositional factual reasoning and controllability compared to
+                standard retrieval baselines.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Abstract. -->
+
+        <!-- Paper video. TODO: replace VIDEO_ID or delete this block.
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
@@ -182,93 +276,716 @@
       </div>
     </div>
     -->
-  </div>
-</section>
 
+        <!-- Motivation. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3">Why do we need controllable, structured knowledge?</h2>
+            <div class="content has-text-justified">
+              <p>Different ways of storing knowledge offer different kinds of access and control.</p>
 
-<section class="section">
-  <div class="container is-max-desktop">
+              <table class="table is-bordered is-narrow is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Knowledge representation</th>
+                    <th>What the model retrieves</th>
+                    <th>Fact-level inspection and editing</th>
+                    <th>Connection to downstream reasoning</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Parametric knowledge</td>
+                    <td>Knowledge implicit in model weights</td>
+                    <td>Difficult</td>
+                    <td>Learned indirectly during pretraining</td>
+                  </tr>
+                  <tr>
+                    <td>Unstructured retrieval</td>
+                    <td>Passages or text chunks</td>
+                    <td>Coarse-grained</td>
+                    <td>The corpus is usually fixed</td>
+                  </tr>
+                  <tr>
+                    <td>Static structured KB</td>
+                    <td>Explicit entities and relations</td>
+                    <td>Direct</td>
+                    <td>Usually constructed separately from QA</td>
+                  </tr>
+                  <tr>
+                    <td><strong>KBevo</strong></td>
+                    <td>
+                      <strong>Explicit <code>(entity, relation, value)</code> facts</strong>
+                    </td>
+                    <td><strong>Direct</strong></td>
+                    <td><strong>Construction and reasoning are jointly optimized</strong></td>
+                  </tr>
+                </tbody>
+              </table>
 
-    <!-- Method. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Method</h2>
-        <div class="content has-text-justified">
-          <p>
-            <!-- TODO: describe the method; add figures under ./static/images/. -->
-            Method description goes here.
-          </p>
+              <p>
+                Parametric knowledge is inherently entangled in model weights. Even when a model recalls a fact correctly, there is no simple way to
+                locate that fact, change it, or verify what other behavior an edit might affect. Text-based retrieval externalizes the source
+                material, but the unit of retrieval remains a chunk of prose rather than an individual fact.
+              </p>
+              <p>
+                Structured KBs expose a cleaner interface. For example, the following fact separates the entity, relation, and value into fields that
+                can be addressed directly.
+              </p>
+
+              <table class="table is-bordered is-narrow is-hoverable">
+                <thead>
+                  <tr>
+                    <th>Entity</th>
+                    <th>Relation</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>In My Blood</td>
+                    <td>co-written by</td>
+                    <td>Jessica Origliasso</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+                It can be inspected, queried, replaced, or removed directly. The remaining problem is construction: high-quality KBs typically rely on
+                human-designed schemas, human annotation, or expensive frontier-model extraction. They are also usually built independently of the
+                questions that the model ultimately needs to answer.
+              </p>
+              <p>
+                KBevo connects these two processes. If a missing or poorly organized fact prevents successful reasoning, the resulting QA reward can
+                help improve future knowledge construction.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <!--/ Method. -->
+        <!--/ Motivation. -->
 
-    <!-- Results. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Results</h2>
-        <div class="content has-text-justified">
-          <p>
-            <!-- TODO: results, tables, plots. -->
-            Results go here.
-          </p>
+        <!-- Method. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3">How does KBevo build and use a knowledge base?</h2>
+            <div class="content has-text-justified">
+              <p>
+                KBevo uses a single policy in two phases: <strong>knowledge-base construction</strong> and
+                <strong>question answering over the constructed KB</strong>.
+              </p>
+            </div>
+
+            <img
+              src="./static/images/fig_multihop_overview.png"
+              alt="Overview of the KBevo framework: knowledge-base construction, multi-hop question answering, and co-evolution via GRPO."
+              style="width: 100%"
+            />
+            <p class="has-text-centered is-size-7" style="margin-top: 0.75rem">
+              <em
+                >Figure 2. Overview of our co-evolving framework. The model first constructs a structured knowledge base from context, then answers
+                multihop questions by retrieving and reasoning over it. Both phases are jointly optimized so that knowledge construction and reasoning
+                improve together.</em
+              >
+            </p>
+
+            <div class="content has-text-justified" style="margin-top: 1.5rem">
+              <p>
+                Consider this bridge question from the
+                <a href="https://huggingface.co/datasets/hotpotqa/hotpot_qa">HotpotQA training set</a>:
+              </p>
+              <blockquote>
+                <p><strong>Document 1:</strong> The song &ldquo;In My Blood&rdquo; was co-written by Jessica Origliasso and others.</p>
+                <p><strong>Document 2:</strong> Jessica Origliasso was born and raised in Albany Creek, Queensland.</p>
+                <p><strong>Question:</strong> Where was the co-writer of In My Blood born and raised?</p>
+              </blockquote>
+              <!-- HotpotQA example ID: 5a8a33805542996c9b8d5e46 -->
+
+              <h3 class="title is-4">Phase 1: Knowledge base construction</h3>
+              <p>
+                Given supporting documents, the model extracts atomic facts with entity, relation, and value fields. For the HotpotQA example above,
+                the model can construct facts such as:
+              </p>
+
+              <table class="table is-bordered is-narrow is-hoverable">
+                <thead>
+                  <tr>
+                    <th>Entity</th>
+                    <th>Relation</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>In My Blood</td>
+                    <td>co-written by</td>
+                    <td>Jessica Origliasso</td>
+                  </tr>
+                  <tr>
+                    <td>Jessica Origliasso</td>
+                    <td>born in</td>
+                    <td>Albany Creek, Queensland</td>
+                  </tr>
+                  <tr>
+                    <td>Jessica Origliasso</td>
+                    <td>raised in</td>
+                    <td>Albany Creek, Queensland</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+                Together, the extracted entities and relations form a graph. The graph is schema-free: the model learns which relations to express
+                rather than filling a manually specified ontology.
+              </p>
+
+              <h3 class="title is-4">Phase 2: Question answering by retrieving over the KB</h3>
+              <p>
+                To answer a factual question, the model issues targeted <code>(entity, relation)</code>
+                lookups and receives the corresponding values from the constructed KB. Retrieved values are inserted into the model's context,
+                allowing it to compose multiple facts during reasoning.
+              </p>
+              <p>The same example, visualized in Figure 6 of the paper, shows this process:</p>
+            </div>
+
+            <img src="./static/images/fig_kg_case_study.png" alt="A KBevo multi-hop reasoning example." style="width: 100%" />
+
+            <div class="content has-text-justified" style="margin-top: 1.5rem">
+              <p>The model answers <em>&ldquo;Where was the co-writer of In My Blood born and raised?&rdquo;</em> by following a two-hop path:</p>
+              <pre><code>In My Blood
+  &rarr; co-written by &rarr; Jessica Origliasso
+  &rarr; born in / raised in &rarr; Albany Creek, Queensland</code></pre>
+              <p>
+                The pale edges show other facts available in the KB, while the dark path shows the small subset the model actually needs for this
+                question.
+              </p>
+              <p>At inference time, the KB can be constructed and indexed once, then fixed and reused across many downstream questions.</p>
+
+              <h3 class="title is-4">How do knowledge construction and reasoning co-evolve?</h3>
+              <p>
+                During training, KBevo samples multiple candidate KBs for the same documents. For each candidate KB, it generates multiple QA rollouts
+                and scores each answer using answer F1. Following the notation in the paper, $b$ indexes the training example, $k$ indexes a candidate
+                KB, and $m$ indexes a QA rollout generated from that KB.
+              </p>
+              <p>The reward for each QA rollout is</p>
+              $$ r_{b,k,m}\leftarrow r\!\left(\hat{y}_{b,k,m},a_b^*\right), $$
+              <p>and the reward for candidate KB $G_{b,k}$ is the average reward of its associated QA rollouts:</p>
+              $$ \bar{r}_{b,k}\leftarrow\frac{1}{M}\sum_{m=1}^{M}r_{b,k,m}. $$
+              <p>
+                A KB that consistently supports correct answers receives a higher reward.
+                <a href="https://arxiv.org/abs/2402.03300">GRPO</a> then updates the shared policy using both the KB-construction advantages and the
+                QA advantages. This creates a feedback loop:
+              </p>
+              <ol>
+                <li>Better structured knowledge enables better answers.</li>
+                <li>Answer outcomes reveal which candidate KBs were more useful.</li>
+                <li>The reward improves both future KB construction and reasoning behavior.</li>
+              </ol>
+              <p>
+                The feedback operates through policy optimization during training. It does not manually insert a missing edge after an individual
+                mistake.
+              </p>
+            </div>
+          </div>
         </div>
+        <!--/ Method. -->
+
+        <!-- Results. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3">Does co-evolution improve question answering?</h2>
+            <div class="content has-text-justified">
+              <p>
+                We train Qwen3-1.7B and Qwen3-4B models on 7K
+                <a href="https://hotpotqa.github.io/">HotpotQA</a> examples and evaluate them on HotpotQA,
+                <a href="https://aclanthology.org/2022.tacl-1.31/">MuSiQue</a>,
+                <a href="https://aclanthology.org/2020.coling-main.580/">2WikiMultiHopQA</a>, and
+                <a href="https://arxiv.org/abs/2212.10511">PopQA</a>. Exact-match results are shown below.
+              </p>
+
+              <div class="booktabs-wrap">
+                <table class="booktabs">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>HotpotQA<sup>*</sup></th>
+                      <th>MuSiQue</th>
+                      <th>2Wiki</th>
+                      <th>PopQA</th>
+                      <th class="rule-left">Avg</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="block-head">
+                      <td>Qwen3-1.7B</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="rule-left"></td>
+                    </tr>
+                    <tr>
+                      <td>Direct</td>
+                      <td>12.1</td>
+                      <td>0.7</td>
+                      <td>21.7</td>
+                      <td>16.0</td>
+                      <td class="rule-left">12.6</td>
+                    </tr>
+                    <tr>
+                      <td><a href="https://arxiv.org/abs/2005.11401">RAG</a></td>
+                      <td>25.4</td>
+                      <td>6.3</td>
+                      <td>21.8</td>
+                      <td>57.8</td>
+                      <td class="rule-left">27.8</td>
+                    </tr>
+                    <tr>
+                      <td><a href="https://aclanthology.org/2023.acl-long.557/">IRCoT</a></td>
+                      <td>23.7</td>
+                      <td>12.2</td>
+                      <td>44.0</td>
+                      <td>60.7</td>
+                      <td class="rule-left">35.2</td>
+                    </tr>
+                    <tr>
+                      <td><a href="https://arxiv.org/abs/2503.09516">Search-R1</a><sup>&dagger;</sup></td>
+                      <td>44.1</td>
+                      <td>14.3</td>
+                      <td>45.9</td>
+                      <td>65.3</td>
+                      <td class="rule-left">42.4</td>
+                    </tr>
+                    <tr class="row-light">
+                      <td>KBevo-SFT</td>
+                      <td>29.5</td>
+                      <td>13.3</td>
+                      <td>44.9</td>
+                      <td>57.0</td>
+                      <td class="rule-left">36.2</td>
+                    </tr>
+                    <tr class="row-mid">
+                      <td>KBevo-GRPO</td>
+                      <td>37.3</td>
+                      <td>18.6</td>
+                      <td>47.8</td>
+                      <td>61.4</td>
+                      <td class="rule-left">41.3</td>
+                    </tr>
+                    <tr class="block-head group">
+                      <td>Qwen3-4B</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="rule-left"></td>
+                    </tr>
+                    <tr>
+                      <td>Direct</td>
+                      <td>12.3</td>
+                      <td>1.5</td>
+                      <td>18.5</td>
+                      <td>13.7</td>
+                      <td class="rule-left">11.5</td>
+                    </tr>
+                    <tr>
+                      <td>RAG</td>
+                      <td>32.4</td>
+                      <td>6.7</td>
+                      <td>20.3</td>
+                      <td>63.1</td>
+                      <td class="rule-left">30.6</td>
+                    </tr>
+                    <tr>
+                      <td>IRCoT</td>
+                      <td>33.0</td>
+                      <td>19.7</td>
+                      <td>27.1</td>
+                      <td>65.0</td>
+                      <td class="rule-left">36.2</td>
+                    </tr>
+                    <tr>
+                      <td>Search-R1<sup>&dagger;</sup></td>
+                      <td>51.1</td>
+                      <td>22.6</td>
+                      <td>50.4</td>
+                      <td>71.8</td>
+                      <td class="rule-left">49.0</td>
+                    </tr>
+                    <tr class="row-light">
+                      <td>KBevo-SFT</td>
+                      <td>35.6</td>
+                      <td>16.7</td>
+                      <td>40.7</td>
+                      <td>54.3</td>
+                      <td class="rule-left">36.8</td>
+                    </tr>
+                    <tr class="row-mid">
+                      <td>KBevo-GRPO</td>
+                      <td>46.1</td>
+                      <td>26.4</td>
+                      <td>51.4</td>
+                      <td>62.5</td>
+                      <td class="rule-left">46.6</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="booktabs-caption has-text-centered">
+                Evaluation on multi-hop QA benchmarks and PopQA (EM).
+                <sup>*</sup> marks the in-domain benchmark. <sup>&dagger;</sup> Reimplemented on Qwen3 backbone.
+              </p>
+
+              <p>
+                GRPO improves KBevo over SFT at both model scales and on every benchmark, raising average EM by
+                <strong>5.1 points at 1.7B</strong> and <strong>9.8 points at 4B</strong>. The result shows that downstream answer reward provides a
+                useful signal for jointly improving KB construction and multi-hop reasoning.
+              </p>
+              <p>
+                Our closest baseline is Search-R1, which also uses outcome-based RL but retrieves from unstructured text. KBevo-GRPO achieves
+                comparable average EM:
+                <strong>41.3 vs. 42.4</strong> at 1.7B and <strong>46.6 vs. 49.0</strong> at 4B. KBevo performs especially well on MuSiQue and
+                2WikiMultiHopQA, while retaining an explicit knowledge interface that can be inspected and edited.
+              </p>
+            </div>
+
+            <h2 class="title is-3" style="margin-top: 2.5rem">What happens when we edit the knowledge?</h2>
+            <div class="content has-text-justified">
+              <p>
+                Controllability matters only if the model actually follows the edited external knowledge. We test this on
+                <a href="https://aclanthology.org/2025.findings-acl.536/">ConFiQA-MR</a>, where original facts are replaced by conflict-free
+                counterfactual facts that can disagree with the model's parametric knowledge.
+              </p>
+            </div>
+
+            <img
+              src="./static/images/fig_confiqa_absolute_performance_grouped_by_method.svg"
+              alt="Reasoning with edited external knowledge on ConFiQA-MR."
+              style="width: 100%"
+            />
+            <p class="has-text-centered is-size-7" style="margin-top: 0.75rem">
+              <em
+                >KBevo remains strong after counterfactual edits to the knowledge store. Individual facts can be updated and immediately used for
+                reasoning, without retraining the model.</em
+              >
+            </p>
+
+            <div class="content has-text-justified" style="margin-top: 1.5rem">
+              <p>
+                Because the update occurs in a discrete KB entry, the change is explicit: we can see which fact was replaced and which new value the
+                model retrieved. This is the practical advantage of representing knowledge outside the model in a structured form.
+              </p>
+            </div>
+
+            <h2 class="title is-3" style="margin-top: 2.5rem">What actually improves during co-evolution?</h2>
+            <div class="content has-text-justified">
+              <p>
+                Higher QA accuracy alone cannot tell us whether KBevo constructed a better KB, learned a better reasoning policy, or both. We analyze
+                the two components separately.
+              </p>
+              <h3 class="title is-4">The answers become more reachable</h3>
+              <p>
+                We measure whether an answer entity can be reached from entities in the question within a bounded number of hops. GRPO improves answer
+                reachability across hop depths and outperforms static KB-construction methods.
+              </p>
+            </div>
+
+            <div class="columns is-centered">
+              <div class="column is-half">
+                <img src="./static/images/fig_db_coverage.svg" alt="Knowledge-base coverage." style="width: 100%" />
+              </div>
+            </div>
+
+            <div class="content has-text-justified" style="margin-top: 1.5rem">
+              <p>
+                The learned KBs also become larger and better connected. For Qwen3-4B, the average number of triplets grows from
+                <strong>165.7 after SFT to 299.1 after GRPO</strong>, while the largest connected component grows from
+                <strong>57.8% to 73.8%</strong> of the graph.
+              </p>
+              <p>
+                The intrinsic evaluation tells the same story. Compared with static construction pipelines, KBevo produces more accurate triples and
+                makes the answer reachable through short graph paths more often.
+              </p>
+
+              <table class="table is-bordered is-narrow is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>KB source</th>
+                    <th class="has-text-right">Triplet precision</th>
+                    <th class="has-text-right">Triplet recall</th>
+                    <th class="has-text-right">Triplet F1</th>
+                    <th class="has-text-right">Answer reachable &le;2 hops</th>
+                    <th class="has-text-right">Answer reachable &le;4 hops</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="https://aclanthology.org/2024.emnlp-main.548/">EDC</a> (Mistral-7B)</td>
+                    <td class="has-text-right">0.864</td>
+                    <td class="has-text-right">0.477</td>
+                    <td class="has-text-right">0.600</td>
+                    <td class="has-text-right">63.7%</td>
+                    <td class="has-text-right">69.5%</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://aclanthology.org/2026.acl-long.942/">AutoSchemaKG</a> (Llama-3.1-8B)</td>
+                    <td class="has-text-right">0.888</td>
+                    <td class="has-text-right">0.838</td>
+                    <td class="has-text-right">0.860</td>
+                    <td class="has-text-right">72.1%</td>
+                    <td class="has-text-right">80.8%</td>
+                  </tr>
+                  <tr>
+                    <td><strong>KBevo-1.7B GRPO</strong></td>
+                    <td class="has-text-right">0.925</td>
+                    <td class="has-text-right">0.923</td>
+                    <td class="has-text-right">0.924</td>
+                    <td class="has-text-right">81.3%</td>
+                    <td class="has-text-right">88.4%</td>
+                  </tr>
+                  <tr>
+                    <td><strong>KBevo-4B GRPO</strong></td>
+                    <td class="has-text-right"><strong>0.938</strong></td>
+                    <td class="has-text-right"><strong>0.952</strong></td>
+                    <td class="has-text-right"><strong>0.945</strong></td>
+                    <td class="has-text-right"><strong>84.0%</strong></td>
+                    <td class="has-text-right"><strong>90.4%</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="is-size-7">
+                <em>Intrinsic KB quality on HotpotQA. This evaluation measures the constructed KB independently of downstream answer generation.</em>
+              </p>
+
+              <h3 class="title is-4">The answers become better grounded</h3>
+              <p>
+                We use an LLM judge to evaluate whether the answer is supported by retrieved KB entries and whether the reasoning chain is logically
+                correct.
+              </p>
+            </div>
+
+            <div class="columns">
+              <div class="column">
+                <img src="./static/images/fig_db_grounding.svg" alt="Knowledge grounding." style="width: 100%" />
+              </div>
+              <div class="column">
+                <img src="./static/images/fig_reasoning_stacked.svg" alt="Reasoning correctness." style="width: 100%" />
+              </div>
+            </div>
+
+            <div class="content has-text-justified">
+              <p>
+                After co-evolution, the fraction of fully grounded answers increases from
+                <strong>48% to 55%</strong>, and reasoning correctness increases from <strong>45% to 55%</strong>. Co-evolution therefore improves
+                both the knowledge available to the model and its ability to use that knowledge.
+              </p>
+            </div>
+
+            <h2 class="title is-3" style="margin-top: 2.5rem">What does the co-evolution itself buy us?</h2>
+            <div class="content has-text-justified">
+              <p>
+                We first isolate the value of the learned KB by holding the KBevo reasoning policy fixed and swapping in KBs built by other methods.
+              </p>
+
+              <table class="table is-bordered is-narrow is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>KB used at inference</th>
+                    <th class="has-text-right">HotpotQA*</th>
+                    <th class="has-text-right">MuSiQue</th>
+                    <th class="has-text-right">2Wiki</th>
+                    <th class="has-text-right">Average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>KBevo learned KB</strong></td>
+                    <td class="has-text-right"><strong>40.3</strong></td>
+                    <td class="has-text-right"><strong>19.3</strong></td>
+                    <td class="has-text-right">47.3</td>
+                    <td class="has-text-right">35.6</td>
+                  </tr>
+                  <tr>
+                    <td>EDC KB (Mistral-7B)</td>
+                    <td class="has-text-right">30.2</td>
+                    <td class="has-text-right">8.3</td>
+                    <td class="has-text-right">40.1</td>
+                    <td class="has-text-right">26.2</td>
+                  </tr>
+                  <tr>
+                    <td>AutoSchemaKG KB (Llama-3.1-8B)</td>
+                    <td class="has-text-right">29.0</td>
+                    <td class="has-text-right">16.1</td>
+                    <td class="has-text-right">28.8</td>
+                    <td class="has-text-right">24.6</td>
+                  </tr>
+                  <tr>
+                    <td>Gemini KB</td>
+                    <td class="has-text-right">38.1</td>
+                    <td class="has-text-right">19.0</td>
+                    <td class="has-text-right"><strong>54.5</strong></td>
+                    <td class="has-text-right"><strong>37.2</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+                The learned KBevo KB substantially outperforms EDC and AutoSchemaKG, even though those pipelines use larger extraction models. The
+                Gemini KB is only 1.6 average-EM points higher, suggesting that KBevo captures much of the downstream utility of the frontier-model
+                KB.
+              </p>
+              <p>We then remove co-evolution by keeping an external KB fixed throughout training and optimizing only the reasoning policy.</p>
+
+              <table class="table is-bordered is-narrow is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Training setup</th>
+                    <th class="has-text-right">HotpotQA*</th>
+                    <th class="has-text-right">MuSiQue</th>
+                    <th class="has-text-right">2Wiki</th>
+                    <th class="has-text-right">Average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Full KBevo co-evolution</strong></td>
+                    <td class="has-text-right"><strong>40.3</strong></td>
+                    <td class="has-text-right"><strong>19.3</strong></td>
+                    <td class="has-text-right">47.3</td>
+                    <td class="has-text-right">35.6</td>
+                  </tr>
+                  <tr>
+                    <td>Fixed AutoSchemaKG KB</td>
+                    <td class="has-text-right">34.1</td>
+                    <td class="has-text-right">13.5</td>
+                    <td class="has-text-right">38.0</td>
+                    <td class="has-text-right">28.5</td>
+                  </tr>
+                  <tr>
+                    <td>Fixed Gemini KB</td>
+                    <td class="has-text-right">38.6</td>
+                    <td class="has-text-right">15.1</td>
+                    <td class="has-text-right"><strong>54.5</strong></td>
+                    <td class="has-text-right"><strong>36.1</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+                Training over a fixed AutoSchemaKG KB reaches <strong>28.5 average EM</strong>, below the full co-evolving model's
+                <strong>35.6</strong>. A fixed Gemini KB reaches <strong>36.1</strong>, showing that a high-quality frontier-model KB remains a strong
+                reference point.
+              </p>
+              <p>
+                Together, these experiments show why the two sides of KBevo belong together: reasoning optimization cannot fully compensate for a weak
+                fixed KB, and answer feedback can teach a small model to construct knowledge with downstream utility approaching that of a
+                frontier-model teacher.
+              </p>
+            </div>
+
+            <h2 class="title is-3" style="margin-top: 2.5rem">Do we still need supervised fine-tuning?</h2>
+            <div class="content has-text-justified">
+              <p>
+                In our experiments, yes. Starting RL directly from the base model causes both reward and lookup usage to collapse. The model struggles
+                to produce valid structured traces and falls back to internal parametric knowledge.
+              </p>
+            </div>
+
+            <div class="columns">
+              <div class="column has-text-centered">
+                <img src="./static/images/fig_zero_rl_reward.svg" alt="Zero RL reward collapse." style="width: 100%" />
+                <p class="is-size-7"><em>(a) Zero RL reward collapse</em></p>
+              </div>
+              <div class="column has-text-centered">
+                <img src="./static/images/fig_zero_rl_call_frequency.svg" alt="Lookup usage drops." style="width: 100%" />
+                <p class="is-size-7"><em>(b) Lookup usage drops</em></p>
+              </div>
+              <div class="column has-text-centered">
+                <img
+                  src="./static/images/fig_training_rewards_by_sft.svg"
+                  alt="Training rewards from different SFT checkpoints."
+                  style="width: 100%"
+                />
+                <p class="is-size-7"><em>(c) Early SFT is sufficient</em></p>
+              </div>
+            </div>
+
+            <p class="has-text-centered is-size-7">
+              <em
+                >Figure 5: Effect of SFT warmup before RL. Starting directly from the base model causes reward and lookup usage to collapse. Even
+                relatively early SFT checkpoints are sufficient to enter the structured reasoning regime and improve during RL.</em
+              >
+            </p>
+
+            <div class="content has-text-justified" style="margin-top: 1.5rem">
+              <p>
+                SFT does not need to be exhaustive, however. Models initialized from earlier SFT checkpoints begin with lower reward but improve
+                quickly during RL and reach similar final performance. SFT appears to establish the structured construction and lookup behavior; RL
+                can then refine what to store and how to reason.
+              </p>
+            </div>
+
+            <h2 class="title is-3" style="margin-top: 2.5rem">Limitations and future directions</h2>
+            <div class="content has-text-justified">
+              <p>
+                KBevo currently relies on SFT to enter the structured reasoning regime. Larger base models or stronger prompting may reduce this
+                dependence.
+              </p>
+              <p>
+                QA reward also supervises only the facts retrieved during training. GRPO improves coverage and connectivity, but that does not
+                guarantee that every constructed triple is faithful to the source documents. Broader reward coverage and explicit fact verification
+                are important next steps. The framework may also remain vulnerable to reward hacking, motivating stronger verification and carefully
+                controlled synthetic-question or self-play training.
+              </p>
+            </div>
+
+            <h2 class="title is-3" style="margin-top: 2.5rem">Takeaway</h2>
+            <div class="content has-text-justified">
+              <p>
+                KBevo treats knowledge construction as part of the learning problem. Downstream QA outcomes teach the model which structured facts
+                support reasoning, while the resulting knowledge remains explicit enough for people to inspect, update, and control.
+              </p>
+              <p>
+                The broader idea is simple: a model's knowledge and its reasoning policy should improve together, while its facts remain explicit
+                rather than disappearing inside its parameters.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Results. -->
       </div>
-    </div>
-    <!--/ Results. -->
+    </section>
 
-    <!-- Results carousel. Drop videos in ./static/videos/ and uncomment.
-    <div id="results-carousel" class="carousel results-carousel">
-      <div class="item">
-        <video autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/example.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-    -->
-
-  </div>
-</section>
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{noonan2026coevolving,
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@inproceedings{noonan2026coevolving,
   title     = {Co-Evolving Structured Knowledge and Reasoning in Language Models},
   author    = {Noonan, Ryan Thomas and Zhao, Linxi and Xu, Menghan and Sarkar, Akanksha and Mishra, Mihir and Go, Dongyoung and Weinberger, Kilian Q. and Artzi, Yoav and Sun, Jennifer J.},
   booktitle = {Conference on Language Modeling (COLM)},
   year      = {2026},
 }</code></pre>
-  </div>
-</section>
+      </div>
+    </section>
 
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="https://menghan-xu.github.io">
-        <i class="fas fa-home"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This website borrows the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of the
-            <a href="https://nerfies.github.io">Nerfies</a> project page.
-          </p>
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is licensed under a
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"
+                  >Creative Commons Attribution-ShareAlike 4.0 International License</a
+                >.
+              </p>
+              <p>
+                This website borrows the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of the
+                <a href="https://nerfies.github.io">Nerfies</a> project page.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</footer>
-
-</body>
+    </footer>
+  </body>
 </html>
